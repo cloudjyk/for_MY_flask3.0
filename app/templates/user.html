@@ -1,0 +1,59 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>Welcome to {{ user.username }}'s home page!</h1>
+{% include 'flash.html' %}
+<table class="table table-hover">
+    <tr>
+        <td width="30px" height="210px">
+        </td>
+        <td width="210px" height="210px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'><a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"/></a></td>
+        <td width="30px" height="210px">
+        </td>
+        <td width="210px" rowspan=$rowspan style='vertical-align: middle;'>
+            <p>{{ user.username }}</p>
+            {% if user.last_seen %}
+            <p><em>Last seen: {{momentjs(user.last_seen).calendar()}}</em></p>
+            {% endif %}
+            {% if g.user.username != user.username %}
+            <p>{{ user.followers.count()-1 }} followers | {{ user.followed.count()-1 }} followeds<br/>
+            {% if not g.user.is_following(user) %}<a href="{{url_for('follow', username = user.username)}}">follow</a>{% else %}follow{% endif %} | <a href="{{url_for('unfollow', username = user.username)}}">unfollow</a></p>
+            {% endif %}
+            {% if g.user.username == user.username %}
+            <p><a href="{{url_for('edit',username = g.user.username)}}">edit my info</a></p>
+            {% endif %}
+        </td>
+        <td width="30px" height="210px">
+        </td>
+        <td rowspan=$rowspan style='vertical-align: middle;'>
+            <p><em>About me:</em></p>
+            <div class="well" ><p>{{ user.about_me }}</p></div>
+        </td>
+        <td width="30px" height="210px">
+        </td>
+    </tr>
+</table>
+
+
+
+
+{% for post in posts.items %}
+    {% include 'post.html' %}
+{% endfor %}
+
+{% if posts.has_prev %}
+<a href="{{ url_for('user', username = user.username, page = posts.prev_num) }}"><< Newer posts</a>
+{% else %}
+<< Newer posts
+{% endif %}
+page {{ posts.page }}
+{% if posts.has_next %}
+<a href="{{ url_for('user', username = user.username, page = posts.next_num) }}">Older posts >></a>
+{% else %}
+Older posts >>
+{% endif %}
+
+{% endblock %}

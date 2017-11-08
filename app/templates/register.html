@@ -1,0 +1,65 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript">
+</script>
+{% include 'flash.html' %}
+<div class="well">
+    <h3>Please Register here !</h3>
+    <form class="form" action="" method="post" name="login">
+        {{form.hidden_tag()}}
+        <div class="help-block">Plz enter your name and password below:</div>
+        <div class="controls">
+            <table>
+                <tr>
+                    <td>username:</td>
+                    <td>{{ form.username(size = 80, class = "span4") }}
+                        {% for error in form.errors.username %}
+                        <span class="help-inline">[{{error}}]</span><br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>password:</td>
+                    <td>{{ form.password(size = 80, class = "span4") }}
+                        {% for error in form.errors.password %}
+                        <span class="help-inline">[{{error}}]</span><br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>password again:</td>
+                    <td>
+                        {{ form.password2(size = 80, class = "span4") }}
+                        {% if not form.pw_check() %}
+                        <span class="help-inline">password not the same</span><br>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>email address:</td>
+                    <td>
+                        {{ form.email(size = 80, class = "span4") }}
+                        {% for error in form.errors.email %}
+                        <span class="help-inline">[{{error}}]</span><br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox" for="remember_me">
+                    {{ form.remember_me }} Remember Me
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Register!">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
