@@ -23,15 +23,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="{{ url_for('index', username = g.user.username) }}">MFblog</a>
+          <a class="brand" href="{{ url_for('index', username = g.user.username) }}">AKblog</a>
             <ul class="nav">
-              <li><a href="{{ url_for('index', username = g.user.username) }}">Home</a></li>
+              <li><a href="{{ url_for('index', username = g.user.username) }}">Index</a></li>
               {% if not g.user.is_authenticated %}
               <li><a href="{{ url_for('login') }}">Login</a></li>
               <li><a href="{{ url_for('register') }}">Register</a></li>
               {% endif %}
               {% if g.user.is_authenticated %}
-              <li><a href="{{ url_for('user',username = g.user.username) }}">My profile</a></li>
+              <li><a href="{{ url_for('user',username = g.user.username) }}">Homepage</a></li>
               <li><a href="{{ url_for('logout') }}">Logout</a></li>
               {% endif %}
             </ul>

@@ -6,54 +6,92 @@
 
 <h1>Welcome to {{ user.username }}'s home page!</h1>
 {% include 'flash.html' %}
-<table class="table table-hover">
+<table class="table table-hover" style="table-layout:fixed">
     <tr>
-        <td width="30px" height="210px">
+        <td width="260px" height="260px" style='vertical-align: middle;text-align: center;'>
+            <a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"></a>
         </td>
-        <td width="210px" height="210px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'><a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"/></a></td>
-        <td width="30px" height="210px">
+        <td rowspan="3" style='vertical-align: middle;text-align: center;'>
+            {% for post in posts.items %}
+            {% include 'post.html' %}
+            {% endfor %}
+            {% if posts.has_prev %}
+            <a href="{{ url_for('user', username = user.username, page = posts.prev_num) }}"><em><< Newer posts</em></a>
+            {% else %}
+            << Newer posts
+            {% endif %}
+            page {{ posts.page }}
+            {% if posts.has_next %}
+            <a href="{{ url_for('user', username = user.username, page = posts.next_num) }}"><em>Older posts >></em></a>
+            {% else %}
+            Older posts >>
+            {% endif %}
         </td>
-        <td width="210px" rowspan=$rowspan style='vertical-align: middle;'>
-            <p>{{ user.username }}</p>
-            {% if user.last_seen %}
-            <p><em>Last seen: {{momentjs(user.last_seen).calendar()}}</em></p>
-            {% endif %}
-            {% if g.user.username != user.username %}
-            <p>{{ user.followers.count()-1 }} followers | {{ user.followed.count()-1 }} followeds<br/>
-            {% if not g.user.is_following(user) %}<a href="{{url_for('follow', username = user.username)}}">follow</a>{% else %}follow{% endif %} | <a href="{{url_for('unfollow', username = user.username)}}">unfollow</a></p>
-            {% endif %}
+    </tr>
+    <tr>
+        <td style='height: 150px;vertical-align: middle;text-align: center;'>
+            <table class="table table-hover"  border="0">
+                <tr>
+                    <p>{{ user.username }}</p>
+                    {% if user.last_seen %}
+                    <p><em>Last seen: {{momentjs(user.last_seen).calendar()}}</em></p>
+                    {% endif %}
+                </tr>
+                
+            {% if g.user.username != user.username %}    
+            <tr>
+                <th style='vertical-align: middle;text-align:center;'>
+                    posts
+                </th>
+                <th style='vertical-align: middle;text-align:center;'>
+                    followers
+                </th>
+                <th style='vertical-align: middle;text-align:center;'>
+                    followeds
+                </th>
+            </tr>
+            <tr>
+                <td style='vertical-align: middle;text-align:center;'>
+                    {{ user.posts.count() }}
+                </td>
+                <td style='vertical-align: middle;text-align:center;'>
+                    {{ user.followers.count()-1 }}
+                    {% if not g.user.is_following(user) %}<a href="{{url_for('follow', username = user.username)}}">follow</a>
+                    {% else %}follow
+                    {% endif %}
+                </td>
+                <td style='vertical-align: middle;text-align:center;'>
+                    {{ user.followed.count()-1 }}
+                    {% if g.user.is_following(user) %}<a href="{{url_for('unfollow', username = user.username)}}">unfollow</a>
+                    {% else %}unfollow
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}        
+            </table>
             {% if g.user.username == user.username %}
             <p><a href="{{url_for('edit',username = g.user.username)}}">edit my info</a></p>
             {% endif %}
         </td>
-        <td width="30px" height="210px">
-        </td>
-        <td rowspan=$rowspan style='vertical-align: middle;'>
+    </tr>
+    <tr>
+        <td style='height: 260px;vertical-align: middle;'>
             <p><em>About me:</em></p>
             <div class="well" ><p>{{ user.about_me }}</p></div>
         </td>
-        <td width="30px" height="210px">
-        </td>
     </tr>
+    
+
 </table>
 
 
 
 
-{% for post in posts.items %}
-    {% include 'post.html' %}
-{% endfor %}
 
-{% if posts.has_prev %}
-<a href="{{ url_for('user', username = user.username, page = posts.prev_num) }}"><< Newer posts</a>
-{% else %}
-<< Newer posts
-{% endif %}
-page {{ posts.page }}
-{% if posts.has_next %}
-<a href="{{ url_for('user', username = user.username, page = posts.next_num) }}">Older posts >></a>
-{% else %}
-Older posts >>
-{% endif %}
+
+
+
+
+
 
 {% endblock %}

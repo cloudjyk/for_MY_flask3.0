@@ -5,64 +5,89 @@
 
 
 <h1>Hi, {{ user.username }}!</h1>
-
-<p></p>
 {% include 'flash.html' %}
-<table class="table table-hover">
+<table class="table table-hover" style="table-layout:fixed">
     <tr>
-        <td width="30px" height="210px">
-        </td>
-        <td  width="210px" height="210px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>
+        <td width="260px" height="260px" style='vertical-align: middle;text-align: center;'>
             <a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"></a>
         </td>
-        <td width="30px" height="210px">
-        </td>
-        <td style='vertical-align: middle;'>
-            {% if user.last_seen %}
-            <p><em>Last seen: {{momentjs(user.last_seen).calendar()}}</em></p>
+        <td rowspan="3" style='vertical-align: middle;text-align: center;'>
+            {% for post in posts.items %}
+            {% include 'post.html' %}
+            {% endfor %}
+            {% if posts.has_prev %}
+            <a href="{{ url_for('index', page = posts.prev_num) }}"><em><< Newer posts</em></a>
+            {% else %}
+            << Newer posts
             {% endif %}
-            <p>{{ user.followers.count()-1 }} followers | {{ user.followed.count()-1 }} followeds</p>
+            page {{ posts.page }}
+            {% if posts.has_next %}
+            <a href="{{ url_for('index', page = posts.next_num) }}"><em>Older posts >></em></a>
+            {% else %}
+            Older posts >>
+            {% endif %}
         </td>
-        <td rowspan=$rowspan style='vertical-align: middle;text-align: center;'>
+    </tr>
+    <tr>
+        <td style='height: 150px;vertical-align: middle;text-align:center;'>
+            <table class="table table-hover"  border="0">
+                <tr>
+                    {% if user.last_seen %}
+                    <p><em>Last seen: {{momentjs(user.last_seen).calendar()}}</em></p>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th style='vertical-align: middle;text-align:center;'>
+                        posts
+                    </th>
+                    <th style='vertical-align: middle;text-align:center;'>
+                        followers
+                    </th>
+                    <th style='vertical-align: middle;text-align:center;'>
+                        followeds
+                    </th>
+                </tr>
+                <tr>
+                    <td style='vertical-align: middle;text-align:center;'>
+                        {{ user.posts.count() }}
+                    </td>
+                    <td style='vertical-align: middle;text-align:center;'>
+                        {{ user.followers.count()-1 }}
+                    </td>
+                    <td style='vertical-align: middle;text-align:center;'>
+                        {{ user.followed.count()-1 }}
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="height: 260px;">
             <div class="well">
                 <form class="form-horizontal" action="" method="post" name="post">
                     {{form.hidden_tag()}}
                     <div class="control-group{% if form.errors.post %} error{% endif %}">
-                        <label class="control-label" for="post">Tell friends what's new :</label>
-                        <div class="controls">
-                            {{ form.body(maxlength = 140,cols = 40, rows = 4, style='background:#E0E0E0;') }}
+                        <p style="text-align:left">Tell friends what's new :</p>
+                        <div style="text-align:left">
+                            {{ form.body(maxlength = 320, rows = 4, style='background:#E0E0E0;') }}
+                            <br />
                             {% for error in form.errors.body %}
                                 <span class="help-inline">[{{error}}]</span><br>
                             {% endfor %}
                         </div>
                     </div>
                     <div class="control-group">
-                        <div class="controls">
-                            <input class="btn btn-primary" type="submit" value="Post it !">
+                        <div style="text-align:left">
+                            <input class="btn btn-primary btn-block" type="submit" value="Post it !">
                         </div>
                     </div>
                 </form>
             </div>
         </td>
-        <td width="30px" height="210px">
-        </td>
+        
     </tr>
+    
+
 </table>
-
-
-{% for post in posts.items %}
-    {% include 'post.html' %}
-{% endfor %}
-{% if posts.has_prev %}
-<a href="{{ url_for('index', page = posts.prev_num) }}"><< Newer posts</a>
-{% else %}
-<< Newer posts
-{% endif %}
-page {{ posts.page }}
-{% if posts.has_next %}
-<a href="{{ url_for('index', page = posts.next_num) }}">Older posts >></a>
-{% else %}
-Older posts >>
-{% endif %}
-
 {% endblock %}

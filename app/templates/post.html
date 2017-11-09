@@ -1,11 +1,11 @@
-<table class="table table-hover">
+<table class="table table-hover" style="table-layout:fixed">
     <tr>
         <td width="20px" height="140px">
         </td>
-        <td width="140px" height="140px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>
+        <td width="140px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>
             <a href="{{url_for('user', username = post.author.username)}}"><img src="{{post.author.avatar}}" style="border:3px solid #4A4AFF" /></a>
         </td>
-        <td width="20px" height="140px">
+        <td width="20px">
         </td>
         <td rowspan=$rowspan style='vertical-align: middle;'>
             <p><a href="{{url_for('user', username = post.author.username)}}">{{post.author.username}}</a> said {{momentjs(post.timestamp).fromNow()}}:</p>
@@ -14,7 +14,7 @@
             <a href="{{url_for('post_del', post_id = post.id)}}">delete</a>
             {% endif %}
         </td>
-        <td width="20px" height="140px">
+        <td width="1px">
         </td>
     </tr>
 </table>

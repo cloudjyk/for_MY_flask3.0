@@ -52,14 +52,15 @@ def login():
     if form.validate_on_submit():
         if User.query.filter_by(username = form.username.data).first() == None:
             flash('Invalid user!')
+            return redirect('/login')
         if User.query.filter_by(username = form.username.data).first().password != form.password.data:
             flash('Wrong password!')
             form.password.data = ''
-            return render_template('login.html', title = 'Sign In', form = form)
+            return redirect('/login')
         flash('Login successfully for user:"' + form.username.data + '", remember_me=' + str(form.remember_me.data))
         u = User.query.filter_by(username = form.username.data).first()
         u.last_seen = datetime.utcnow()
-        print(form.password.data)
+        # print(form.password.data)
         db.session.add(u)
         db.session.commit()
         login_user(u, form.remember_me.data)
