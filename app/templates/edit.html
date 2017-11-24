@@ -9,18 +9,28 @@
         {{form.hidden_tag()}}
         <table class="table table-hover">
             <tr>               
-                <td width="30px">
+                <td rowspan="2" width="200px">
                 </td>
-                <td rowspan=$rowspan style='vertical-align: middle;text-align: left;'>
-                    <p>头像预览：</p>
-                    <p></p><div id="avatar-preview" style="border: 1px solid #ccc; width: 200px; height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center center;vertical-align: middle;text-align: center;"></div><p></p>
+                <td style='width: 200px; height: 200px;vertical-align: middle;text-align: center;'><a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"/></a>
+                </td>
+                <td rowspan="2" width="30px">
+                </td>
+                <td rowspan="2" style='vertical-align: middle;text-align: left;'>
+                    <p>上传头像:</p>
+                    <div id="avatar-preview" style="border: 1px solid #ccc; width: 200px; height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center center;vertical-align: middle;text-align: center;"></div>
                     <p>
-                        上传头像:<p></p>
+                        
                         {{ form.avatar(cols = 64, rows = 4, class = "span3") }}
+                        <br />
                         {% for error in form.errors.avatar %}
-                            <span class="help-inline">[{{error}}]</span><br>
+                            <span class="help-inline">[{{error}}]</span>
                         {% endfor %}
                     </p>
+                    <p id="avatar-info"></p>
+                </td>
+            </tr>
+            <tr>
+                <td style='vertical-align: right;text-align: left;'>
                     <div>
                         username:{{ form.username(size = 80, class = "span4") }}
                         {% for error in form.errors.username %}
@@ -33,20 +43,16 @@
                             <span class="help-inline">[{{error}}]</span><br>
                         {% endfor %}
                     </div>
-                    <div class="control-group" style='vertical-align: middle;text-align: left;'>
+                    <div class="control-group" style='vertical-align: right;text-align: right;'>
                         <div class="controls">
                             <button class="btn btn-primary" type="submit" value="Sace changes!">Save changes!</button>
                             <button class="btn btn-danger" type="reset" value="Reset">Reset</button>
                         </div>
-                    </div>
-                </td>
-                <td width="400px" height="400px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'><a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"/></a>
-                </td>
-                <td width="30px">
+                    </div>                    
                 </td>
             </tr>
         </table>
-        <p id="avatar-info"></p>
+        
     </form>
 </div>
 
