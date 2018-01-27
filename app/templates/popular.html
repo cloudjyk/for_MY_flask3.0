@@ -1,0 +1,40 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>Here are the popular users!</h1>
+{% include 'flash.html' %}
+<table class="table table-hover" style="table-layout:fixed">
+    <tr>
+        <td width="260px" height="260px" style='vertical-align: middle;text-align: center;'>
+            <a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"></a>
+        </td>
+        <td>
+            <p><a href="{{url_for('user', username = user.username)}}" >{{user.username}}</a></p>
+            {% if user.last_seen %}
+                <p><em>Last seen: {{momentjs(user.last_seen).calendar()}}</em></p>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style='vertical-align: middle;text-align: center;'>
+            {% for user_per in userlist.items %}
+            {% include 'user_per.html' %}
+            {% endfor %}
+            {% if userlist.has_prev %}
+            <a href="{{ url_for('popular', user = user, page = userlist.prev_num) }}"><em><< Newer users</em></a>
+            {% else %}
+            << Newer users
+            {% endif %}
+            page {{ userlist.page }}
+            {% if userlist.has_next %}
+            <a href="{{ url_for('popular', user = user, page = userlist.next_num) }}"><em>Older users >></em></a>
+            {% else %}
+            Older users >>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+{% endblock %}

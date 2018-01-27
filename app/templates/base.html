@@ -32,6 +32,7 @@
               {% endif %}
               {% if g.user.is_authenticated %}
               <li><a href="{{ url_for('user',username = g.user.username) }}">Homepage</a></li>
+              <li><a href="{{ url_for('popular') }}">Popular</a></li>
               <li><a href="{{ url_for('logout') }}">Logout</a></li>
               {% endif %}
             </ul>

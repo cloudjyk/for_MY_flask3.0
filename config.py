@@ -19,6 +19,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # pagination
 POSTS_PER_PAGE = 3
+USERS_PER_PAGE = 3
 
 # email inform
 # mail server settings

@@ -3,7 +3,7 @@
 from flask import render_template, url_for, flash, redirect, session, request, g
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, avatars
-from config import POSTS_PER_PAGE
+from config import POSTS_PER_PAGE, USERS_PER_PAGE
 from .forms import LoginForm, RegForm, PostForm, EditForm
 from .models import User, Post
 from datetime import datetime
@@ -143,6 +143,17 @@ def edit(username):
         title = 'Edit your info',
         user = g.user,
         form = form)
+
+@app.route('/popular', methods = ['GET', 'POST'])
+@app.route('/popular/<int:page>', methods = ['GET', 'POST'])
+@login_required
+def popular(page = 1):
+    userlist = User.query.order_by(User.username.asc())
+    userlist = userlist.paginate(page, USERS_PER_PAGE, False)
+    return render_template('popular.html',
+        title = 'popular',
+        user = g.user,
+        userlist = userlist)
 
 @app.route('/follow/<username>', methods = ['GET', 'POST'])
 @login_required

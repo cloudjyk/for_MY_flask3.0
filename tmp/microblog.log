@@ -4016,3 +4016,150 @@ NameError: name 'md5' is not defined
 2017-11-24 21:40:13,243 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
 2017-11-24 21:44:47,462 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
 2017-11-24 21:45:24,154 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2017-11-24 21:48:38,844 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2017-12-17 13:39:10,020 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 15:32:40,527 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:03:04,277 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:03:06,272 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:13:43,739 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:38:52,972 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:38:54,419 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:50:45,716 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:51:40,323 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:51:41,782 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:52:20,653 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:52:22,130 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:58:34,578 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 19:58:36,043 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:05:12,204 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:05:16,253 ERROR: Exception on /popular/1 [GET] [in C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask_login\utils.py", line 228, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\PYweb\for_MY_flask3.0\app\views.py", line 155, in popular
+    userlist = userlist)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "F:\PYweb\for_MY_flask3.0\app\templates\popular.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "F:\PYweb\for_MY_flask3.0\app\templates\base.html", line 44, in top-level template code
+    {% block content %}{% endblock %}
+  File "F:\PYweb\for_MY_flask3.0\app\templates\popular.html", line 23, in block "content"
+    {% include 'user_per.html' %}
+  File "F:\PYweb\for_MY_flask3.0\app\templates\user_per.html", line 6, in top-level template code
+    <a href="{{url_for('user', username = user_per.username, page = 1)}}"><img src="{{user_per.avatar}}" style="border:3px solid #4A4AFF" /></a>
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\helpers.py", line 323, in url_for
+    force_external=external)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\werkzeug\routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['page']. Did you forget to specify values ['username']?
+2018-01-27 20:05:18,425 ERROR: Exception on /popular/1 [GET] [in C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask_login\utils.py", line 228, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\PYweb\for_MY_flask3.0\app\views.py", line 155, in popular
+    userlist = userlist)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "F:\PYweb\for_MY_flask3.0\app\templates\popular.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "F:\PYweb\for_MY_flask3.0\app\templates\base.html", line 44, in top-level template code
+    {% block content %}{% endblock %}
+  File "F:\PYweb\for_MY_flask3.0\app\templates\popular.html", line 23, in block "content"
+    {% include 'user_per.html' %}
+  File "F:\PYweb\for_MY_flask3.0\app\templates\user_per.html", line 6, in top-level template code
+    <a href="{{url_for('user', username = user_per.username, page = 1)}}"><img src="{{user_per.avatar}}" style="border:3px solid #4A4AFF" /></a>
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\flask\helpers.py", line 323, in url_for
+    force_external=external)
+  File "C:\Users\Cloudjyk\AppData\Local\Programs\Python\Python35\lib\site-packages\werkzeug\routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['page']. Did you forget to specify values ['username']?
+2018-01-27 20:07:39,605 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:07:41,071 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:08:45,270 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:08:46,727 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:11:39,638 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:11:41,120 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:13:42,126 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:15:34,015 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:16:12,709 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:17:54,075 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:17:55,604 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:18:56,016 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:18:57,534 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:22:11,793 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:22:13,329 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:25:48,577 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:25:50,112 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:26:36,598 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:28:36,805 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:30:17,885 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:30:28,989 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:34:08,906 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:34:10,452 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:35:28,684 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:35:30,241 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:37:36,700 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:37:38,229 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:38:26,875 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:38:28,434 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:39:47,645 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:39:49,178 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:40:22,267 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:40:23,806 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:42:35,169 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:42:36,720 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:43:41,009 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
+2018-01-27 20:47:32,813 INFO: microblog startup [in F:\PYweb\for_MY_flask3.0\app\__init__.py:47]
