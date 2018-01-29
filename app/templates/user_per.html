@@ -10,7 +10,7 @@
         <td rowspan=$rowspan style='vertical-align: middle;'>
             {% if user_per.username %}
                 <p><a href="{{url_for('user', username = user_per.username, page = 1)}}" >{{user_per.username}}</a></p>
-                <p>{{ user.posts.count() }} posts</p>
+                <p>{{ user_per.posts.count() }} posts | {{ user_per.followers.count() }} followers</p>
             {% else %}
                 <P>Sorry, this user doesn't exist!</P>
             {% endif %}

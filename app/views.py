@@ -148,8 +148,15 @@ def edit(username):
 @app.route('/popular/<int:page>', methods = ['GET', 'POST'])
 @login_required
 def popular(page = 1):
-    userlist = User.query.order_by(User.username.asc())
+    userlist = User.query.order_by(User.posts_num.desc())
+    # userlist = User.query.order_by(User.followers.asc())
+    print(userlist)
+    print(g.user.followers.count())
+    # for i in userlist:
+    #     print(i)
+    # userlist = sorted(userlist, key = lambda user: user.posts.count)
     userlist = userlist.paginate(page, USERS_PER_PAGE, False)
+    print(userlist)
     return render_template('popular.html',
         title = 'popular',
         user = g.user,

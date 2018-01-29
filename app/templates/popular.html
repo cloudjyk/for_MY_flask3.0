@@ -11,7 +11,7 @@
         <td width="260px" height="260px" style='vertical-align: middle;text-align: center;'>
             <a href="{{url_for('user', username = user.username)}}"><img src="{{user.avatar}}" style="border:3px solid #4A4AFF"></a>
         </td>
-        <td>
+        <td style='vertical-align: middle;'>
             <p><a href="{{url_for('user', username = user.username)}}" >{{user.username}}</a></p>
             {% if user.last_seen %}
                 <p><em>Last seen: {{momentjs(user.last_seen).calendar()}}</em></p>

@@ -24,6 +24,9 @@ class User(db.Model):
     email = db.Column(db.String(120), index = True, unique = True)
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime)
+    posts_num = db.Column(db.Integer)
+    follower_num = db.Column(db.Integer)
+    followed_num = db.Column(db.Integer)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     followed = db.relationship('User',
         secondary = followers,
