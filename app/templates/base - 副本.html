@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - AKblog</title>
+    {% else %}
+    <title>AKblog</title>
+    {% endif %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <link rel="icon" href="http://www.91h5.cc/favicon.ico">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/moment.min.js"></script>
+    <script src="/static/js/md5.min.js"></script>
+    </head>
+
+
+
+    
+    
+
+  <header class="main-header" style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"><div class="main-header-box"><a class="header-avatar" href="/" title=""><img src="{{ g.user.avatar }}" alt="logo头像"></a><div class="branding"><a href="{{url_for('user', username = g.user.username)}}">{{ g.user.username }}</div></div></header>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="{{ url_for('index', username = g.user.username) }}">AKblog</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="{{ url_for('index', username = g.user.username) }}">Index</a></li>
+              {% if not g.user.is_authenticated %}
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+              <li><a href="{{ url_for('register') }}">Register</a></li>
+              {% endif %}
+              {% if g.user.is_authenticated %}
+              <li><a href="{{ url_for('user',username = g.user.username) }}">Homepage</a></li>
+              <li><a href="{{ url_for('popular') }}">Popular</a></li>
+              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="content-wrap">
+      <div class="container">
+        <div class="row">
+          <main class="col-md-8 main-content">
+            {% block content %}{% endblock %}
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <div class="copyright"><div class="container"><div class="row"><div class="col-sm-12"><span>Copyright © 2017</span> | <span>Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a></span> | <span>Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a></span></div></div></div></div>
+    <script>
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

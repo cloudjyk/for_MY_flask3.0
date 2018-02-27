@@ -1,20 +1,42 @@
-<table class="table table-hover" style="table-layout:fixed">
-    <tr>
-        <td width="20px" height="140px">
-        </td>
-        <td width="140px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>
-            <a href="{{url_for('user', username = post.author.username)}}"><img src="{{post.author.avatar}}" style="border:3px solid #4A4AFF" /></a>
-        </td>
-        <td width="20px">
-        </td>
-        <td rowspan=$rowspan style='vertical-align: middle;'>
-            <p><a href="{{url_for('user', username = post.author.username)}}">{{post.author.username}}</a> said {{momentjs(post.timestamp).fromNow()}}:</p>
-            <p><strong>{{post.body}}</strong></p>
+<article class="post">
+  <div class="post-media"><a href="{{url_for('user', username = post.author.username)}}">
+    <img class="img-ajax" src="{{post.author.avatar}}" alt="" style="display: block;"></a>
+  </div>
+  <div class="post-content">
+    <div class="post-head home-post-head"><h1 class="post-title"><a href="{{url_for('user', username = post.author.username)}}">{{post.author.username}}</a></h1>
+      <div class="post-meta">• <time class="post-date" datetime="" title="">{{momentjs(post.timestamp).fromNow()}}</time>
+      </div>
+    </div><p class="brief">{{post.body}}...</p>
+  </div>
+  <footer class="post-footer clearfix">
+    <div class="pull-left tag-list">
+      <div class="post-meta">
+        <span class="categories-meta fa-wrap">
+          <i class="fa fa-folder-open-o"></i>
+          <span>Cool~</span>
+        </span>
+        <span class="fa-wrap">
+          <i class="fa fa-tags"></i>
+          <span class="tags-meta">
             {% if g.user.username == post.author.username %}
             <a href="{{url_for('post_del', post_id = post.id)}}">delete</a>
+            {% else %}
+            <a href="">like</a>
             {% endif %}
-        </td>
-        <td width="1px">
-        </td>
-    </tr>
-</table>
+          </span>
+        </span>
+        <span class="fa-wrap">
+          <i class="fa fa-clock-o"></i>
+          <span class="date-meta">{{momentjs(post.timestamp).calendar()}}</span>
+        </span>
+      </div>
+    </div>
+    <div class="post-permalink">
+      {% if g.user.is_following(post.author) %}
+        <a href="{{url_for('unfollow', username = post.author.username)}}" class="btn btn-default">Unfollow</a>
+      {% else %}
+        <a href="{{url_for('follow', username = post.author.username)}}" class="btn btn-default">Follow</a>
+      {% endif %}
+    </div>
+  </footer>
+</article>

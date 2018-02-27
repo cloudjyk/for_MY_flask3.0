@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - AKblog</title>
+    {% else %}
+    <title>AKblog</title>
+    {% endif %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <link rel="icon" href="http://www.91h5.cc/favicon.ico">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/moment.min.js"></script>
+    <script src="/static/js/md5.min.js"></script>
+  </head>
+  
+
+  <body>
+    <header class="main-header" style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"><div class="main-header-box"><a class="header-avatar" href="/" title=""><img src="{{ g.user.avatar }}" alt="logo头像"></a><div class="branding"><a href="{{url_for('user', username = g.user.username)}}">{{ g.user.username }}</div></div></header>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="{{ url_for('index', username = g.user.username) }}">AKblog</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="{{ url_for('index', username = g.user.username) }}">Index</a></li>
+              {% if not g.user.is_authenticated %}
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+              <li><a href="{{ url_for('register') }}">Register</a></li>
+              {% endif %}
+              {% if g.user.is_authenticated %}
+              <li><a href="{{ url_for('user',username = g.user.username) }}">Homepage</a></li>
+              <li><a href="{{ url_for('popular') }}">Popular</a></li>
+              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="content-wrap">
+      <div class="container">
+        <div class="row">
+          <main class="col-md-8 main-content">
+            {% block content %}{% endblock %}
+          </main>
+
+          <aside class="col-md-4 sidebar">
+            <div class="widget">
+              <h3 class="title">搜索</h3>
+              <div id="search-form">
+                <div id="result-mask" class="hide" style="width: 1920px; height: 922px;">
+                  
+                </div>
+                <div class="search-area">
+                  <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?"> 
+                  <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                </div>
+                <div id="result-wrap" class="hide">
+                  <div id="search-result">
+                    
+                  </div>
+                </div>
+                <div class="hide">
+                  <template id="search-tpl">
+                    <div class="item">
+                      <a href="/{path}" title="{title}">
+                        <div class="title">{title}
+                        </div>
+                        <div class="content">{content}
+                        </div>
+                      </a>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+            <div class="widget notification"><h3 class="title">网站公告</h3><div><p>主题Snippet v1.2.0版本已经上线！欢迎更新~<br>主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a><br></p><hr>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a><p></p></div></div><div class="widget"><h3 class="title">社交</h3><div class="content social"><a href="//github.com/shenliyang" rel="external nofollow" title="Github" target="_blank"><i class="git fa fa-git"></i></a><a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank"><i class="envelope-o fa fa-envelope-o"></i></a><a href="/" rel="external nofollow" title="联系QQ" target="_blank"><i class="qq fa fa-qq"></i></a><a href="/" rel="external nofollow" title="微博" target="_blank"><i class="weibo fa fa-weibo"></i></a><a href="/" rel="external nofollow" title="QQ群" target="_blank"><i class="users fa fa-users"></i></a><a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank"><i class="feed fa fa-feed"></i></a></div></div><div class="widget"><h3 class="title">分类</h3><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">2</span></li></ul></div><div class="widget"><h3 class="title">归档</h3><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/"><i class="fa" aria-hidden="true">四月 2017</i></a><span class="archive-list-count">1</span></li></ul></div><div class="widget"><h3 class="title">标签云</h3><div class="content tag-cloud"><a href="/tags/JavaScript/" style="font-size:10px">JavaScript</a> <a href="/tags/Webstrorm/" style="font-size:10px">Webstrorm</a> <a href="/tags/gfw/" style="font-size:10px">gfw</a> <a href="/tags/jsLint/" style="font-size:10px">jsLint</a> <a href="/tags/python/" style="font-size:10px">python</a></div></div><div class="widget"><h3 class="title">友链</h3><div class="content friends-link"><a href="http://www.shenliyang.com" class="fa" target="_blank">个人博客</a></div></div>
+          </aside>
+
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <div class="copyright"><div class="container"><div class="row"><div class="col-sm-12"><span>Copyright © 2017</span> | <span>Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a></span> | <span>Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a></span></div></div></div></div>
+    <script>
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>

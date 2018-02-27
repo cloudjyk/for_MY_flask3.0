@@ -1,22 +1,32 @@
-<table class="table table-hover" style="table-layout:fixed">
-    <tr>
-        <td width="140px" rowspan=$rowspan style='vertical-align: middle;text-align: center;'>
-            {% if user_per.username %}
-                <a href="{{url_for('user', username = user_per.username, page = 1)}}"><img src="{{user_per.avatar}}" style="border:3px solid #4A4AFF" /></a>
-            {% else %}
-                <img src="{{user_per.avatar}}" style="border:3px solid #4A4AFF" />
-            {% endif %}
-        </td>
-        <td rowspan=$rowspan style='vertical-align: middle;'>
-            {% if user_per.username %}
-                <p><a href="{{url_for('user', username = user_per.username, page = 1)}}" >{{user_per.username}}</a></p>
-                <p>{{ user_per.posts.count() }} posts | {{ user_per.followers.count() }} followers</p>
-            {% else %}
-                <P>Sorry, this user doesn't exist!</P>
-            {% endif %}
-            {% if user_per.last_seen %}
-                <p><em>Last seen: {{momentjs(user_per.last_seen).calendar()}}</em></p>
-            {% endif %}
-        </td>
-    </tr>
-</table>
+<article class="post">
+  <div class="post-media"><a href="{{url_for('user', username = user_per.username)}}">
+    <img class="img-ajax" src="{{user_per.avatar}}" alt="" style="display: block;"></a>
+  </div>
+  <div class="post-content">
+    <div class="post-head home-post-head"><h1 class="post-title"><a href="{{url_for('user', username = user_per.username)}}">{{user_per.username}}</a></h1>
+      <div class="post-meta">• <time class="post-date" datetime="" title="">{{ user_per.posts.count() }} posts | {{ user_per.followers.count()-1 }} followers | {{ user_per.followed.count()-1 }} followeds</time>
+      </div>
+      <div>
+        {% if user_per.last_seen %}
+            <p><em>Last seen: {{momentjs(user_per.last_seen).calendar()}}</em></p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <footer class="post-footer clearfix">
+    <div class="pull-left tag-list">
+      <div class="post-meta">
+        <span class="categories-meta fa-wrap"><i class="fa fa-folder-open-o"></i> <span>Cool~</span></span><span class="fa-wrap"><i class="fa fa-tags"></i> <span class="tags-meta">
+            {{ user_per.username }}
+        </span></span><span class="fa-wrap"><i class="fa fa-clock-o"></i> <span class="date-meta">{{ user_per.username }}</span></span>
+      </div>
+    </div>
+    <div class="post-permalink">
+      {% if g.user.is_following(user_per) %}
+        <a href="{{url_for('unfollow', username = user_per.username)}}" class="btn btn-default">Unfollow</a>
+      {% else %}
+        <a href="{{url_for('follow', username = user_per.username)}}" class="btn btn-default">Follow</a>
+      {% endif %}
+    </div>
+  </footer>
+</article>
