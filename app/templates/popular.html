@@ -2,8 +2,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-{% include 'flash.html' %}
     {% for user_per in userlist.items %}
     {% include 'user_per.html' %}
     {% endfor %}

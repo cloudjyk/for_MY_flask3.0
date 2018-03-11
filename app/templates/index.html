@@ -3,9 +3,6 @@
 
 {% block content %}
 
-{% include 'flash.html' %}
-
-
 <article class="post">
   <div class="post-media"><a href="{{url_for('user', username = user.username)}}">
     <img class="img-ajax" src="{{user.avatar}}" alt="" style="display: block;"></a>

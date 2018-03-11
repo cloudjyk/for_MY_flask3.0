@@ -51,15 +51,15 @@
                   </div>
                   <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
-                      <li class="nav-current" role="presentation"><a class="brand" href="{{ url_for('index', username = g.user.username) }}">AKblog</a></li>
-                      <li role="presentation"><a href="{{ url_for('index', username = g.user.username) }}">Index</a></li>
+                      <li role="presentation"><a class="brand" href="{{ url_for('index', username = g.user.username) }}">AKblog</a></li>
+                      <li id="index" role="presentation"><a href="{{ url_for('index', username = g.user.username) }}">Index</a></li>
                       {% if not g.user.is_authenticated %}
                       <li role="presentation"><a href="{{ url_for('login') }}">Login</a></li>
                       <li role="presentation"><a href="{{ url_for('register') }}">Register</a></li>
                       {% endif %}
                       {% if g.user.is_authenticated %}
-                      <li role="presentation"><a href="{{ url_for('user',username = g.user.username) }}">Homepage</a></li>
-                      <li role="presentation"><a href="{{ url_for('popular') }}">Popular</a></li>
+                      <li id="homepage" role="presentation"><a href="{{ url_for('user',username = g.user.username) }}">Homepage</a></li>
+                      <li id="popular" role="presentation"><a href="{{ url_for('popular') }}">Popular</a></li>
                       <li role="presentation"><a href="{{ url_for('logout') }}">Logout</a></li>
                       {% endif %}
                     </ul>
@@ -109,7 +109,29 @@
             </div>
             <div class="widget notification"><h3 class="title">网站公告</h3><div><p>UI 全面更新！欢迎使用~<br></p><hr>接受打赏，谢谢老板！<br></div></div>
             
-            <div class="widget"><h3 class="title">社交</h3><div class="content social"><a href="//github.com/" rel="external nofollow" title="Github" target="_blank"><i class="git fa fa-git"></i></a><a href="mailto:cloudjyk@163.com" rel="external nofollow" title="邮箱" target="_blank"><i class="envelope-o fa fa-envelope-o"></i></a><a href="https://mail.qq.com/cgi-bin/loginpage" rel="external nofollow" title="联系QQ" target="_blank"><i class="qq fa fa-qq"></i></a><a href="https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=https%3A%2F%2Fweibo.com%2F&domain=.weibo.com&ua=php-sso_sdk_client-0.6.23&_rand=1519561365.9492" rel="external nofollow" title="微博" target="_blank"><i class="weibo fa fa-weibo"></i></a><a href="/" rel="external nofollow" title="QQ群" target="_blank"><i class="users fa fa-users"></i></a><a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank"><i class="feed fa fa-feed"></i></a></div></div>
+            <div class="widget">
+              <h3 class="title">社交</h3>
+              <div class="content social">
+                <a href="//github.com/" rel="external nofollow" title="Github" target="_blank">
+                  <i class="git fa fa-git"></i>
+                </a>
+                <a href="mailto:cloudjyk@163.com" rel="external nofollow" title="邮箱" target="_blank">
+                  <i class="envelope-o fa fa-envelope-o"></i>
+                </a>
+                <a href="https://mail.qq.com/cgi-bin/loginpage" rel="external nofollow" title="联系QQ" target="_blank">
+                  <i class="qq fa fa-qq"></i>
+                </a>
+                <a href="https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=https%3A%2F%2Fweibo.com%2F&domain=.weibo.com&ua=php-sso_sdk_client-0.6.23&_rand=1519561365.9492" rel="external nofollow" title="微博" target="_blank">
+                  <i class="weibo fa fa-weibo"></i>
+                </a>
+                <a href="/" rel="external nofollow" title="QQ群" target="_blank">
+                  <i class="users fa fa-users"></i>
+                </a>
+                <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                  <i class="feed fa fa-feed"></i>
+                </a>
+              </div>
+            </div>
           </aside>
 
 
@@ -120,7 +142,15 @@
       </div>
     </section>
 
-    <div class="copyright"><div class="container"><div class="row"><div class="col-sm-12"><span>Copyright © 2017</span> | <span>Powered by <a href="mail.163.com" class="copyright-links" target="_blank" rel="nofollow">Cloudjyk</a></span> | <span>Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">N.J</a></span></div></div></div></div>
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <span>Copyright © 2017</span> | <span>Powered by <a href="mail.163.com" class="copyright-links" target="_blank" rel="nofollow">Cloudjyk</a></span> | <span>Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">N.J</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
       var _gauges = _gauges || [];
       (function() {
@@ -133,6 +163,19 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(t, s);
       })();
+    </script>
+    <script type="text/javascript">
+      $(function(){
+        if (location.pathname.startsWith('/ind')) {
+          $('#index').addClass('nav-current');
+        } 
+        if (location.pathname.startsWith('/user')) {
+          $('#homepage').addClass('nav-current');
+        } 
+        if (location.pathname.startsWith('/popular')) {
+          $('#popular').addClass('nav-current');
+        } 
+      }); 
     </script>
   </body>
 </html>

@@ -11,23 +11,23 @@
   <footer class="post-footer clearfix">
     <div class="pull-left tag-list">
       <div class="post-meta">
-        <span class="categories-meta fa-wrap">
-          <i class="fa fa-folder-open-o"></i>
-          <span>Cool~</span>
-        </span>
         <span class="fa-wrap">
-          <i class="fa fa-tags"></i>
+          <i class="fa fa-clock-o"></i>
+          <span class="date-meta">{{momentjs(post.timestamp).calendar()}}</span>
+        </span>        
+        <span class="fa-wrap">
+          <i class="fa fa-comment"></i>
           <span class="tags-meta">
             {% if g.user.username == post.author.username %}
             <a href="{{url_for('post_del', post_id = post.id)}}">delete</a>
             {% else %}
-            <a href="">like</a>
+            <a href="">comment</a>
             {% endif %}
           </span>
         </span>
-        <span class="fa-wrap">
-          <i class="fa fa-clock-o"></i>
-          <span class="date-meta">{{momentjs(post.timestamp).calendar()}}</span>
+        <span class="categories-meta fa-wrap">
+          <i class="fa fa-thumbs-up"></i>
+          <span>888</span>
         </span>
       </div>
     </div>
